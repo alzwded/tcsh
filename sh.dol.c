@@ -718,13 +718,20 @@ fixDolMod(void)
 
     c = DgetC(0);
     if (c == ':') {
+	/* initialize g & a flags to default off
+	   FIXME per the man page, these should apply to the
+	         next modifier, and not be global flags...
+	         maybe move them to dolmod and interpret the flag
+	         state when going through dolmod.
+	*/
+	dolmcnt = 1, dol_flag_a = 0;
 	do {
-	    c = DgetC(0), dolmcnt = 1, dol_flag_a = 0;
+	    c = DgetC(0);
 	    if (c == 'g' || c == 'a') {
 		if (c == 'g')
 		    dolmcnt = INT_MAX;
 		else
-		    dol_flag_a = 1;
+		    dol_flag_a = 1; 
 		c = DgetC(0);
 	    }
 	    if ((c == 'g' && dolmcnt != INT_MAX) || 
