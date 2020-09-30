@@ -1,0 +1,8 @@
+On 6.18.01, the following closes the shell:
+
+    set x='a/b c/d'
+    echo $x:q:h
+
+That probably shouldn't happen :-)
+
+Need to check on HEAD
