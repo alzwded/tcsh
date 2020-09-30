@@ -6,3 +6,27 @@ On 6.18.01, the following closes the shell:
 That probably shouldn't happen :-)
 
 Need to check on HEAD
+
+
+```
+~$ set x='a/b c/d'
+~$ echo $x:q:h
+Out of memory
+
+Breakpoint 4, 0x00007ffff7671bd0 in _exit () from /lib64/libc.so.6
+(gdb) where
+#0  0x00007ffff7671bd0 in _exit () from /lib64/libc.so.6
+#1  0x00000000004037c6 in out_of_memory ()
+#2  0x000000000043e3b5 in smalloc ()
+#3  0x0000000000445659 in s_strnsave ()
+#4  0x00000000004097dc in setDolp ()
+#5  0x000000000040a020 in DgetC ()
+#6  0x000000000040ac00 in Dfix2 ()
+#7  0x000000000040ae16 in Dfix ()
+#8  0x0000000000422a38 in execute ()
+#9  0x0000000000422630 in execute ()
+#10 0x0000000000405afb in process ()
+#11 0x0000000000404b45 in main ()
+```
+
+dol again... the plot thickens!
